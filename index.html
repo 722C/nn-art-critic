@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Neural Networkk Art Critic</title>
+  <title>Neural Network Art Critic</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -13,13 +13,17 @@
 <body>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <a id="logo-container" href="#" class="brand-logo">NN Art Critic</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#teaser">Teaser</a></li>
+        <li><a href="#what">What</a></li>
+        <li><a href="#why">Why</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#teaser">Teaser</a></li>
+        <li><a href="#what">What</a></li>
+        <li><a href="#why">Why</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -29,77 +33,73 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
+        <h1 class="header center teal-text text-lighten-2">Neural Network Art Critic</h1>
         <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-        <div class="row center">
-          <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+          <h5 class="header col s12 light">A system using a neural network to do A/B comparisons of Impressionistic paintings.</h5>
         </div>
         <br><br>
 
       </div>
     </div>
-    <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="images/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Unsplashed background img 1"></div>
   </div>
 
 
-  <div class="container">
+  <div class="container" id="teaser">
     <div class="section">
 
       <!--   Icon Section   -->
       <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+        <div class="col s12 center">
+          <h3><i class="medium material-icons brown-text">flash_on</i></h3>
+          <h4>Teaser</h4>
+          <p class="left-align light">Imagine a time when computers can think, reason, and even appreciate art.  While there is debate as to when we will get to this point, the reality is that we almost inevitably will; it is just a matter of time.</p>
+          <p class="left-align light">Artists have been using computers to work with and generate art, such as fractal art and algorithmic art, for quite some time.  Computers actually generating art themselves (whether one considers it art or not) has been a very recent development.  Systems like Google's <a href="http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html" class="brown-text text-lighten-3">Deep Dream</a> are able to create images with little to no input.</p>
+          <p class="left-align">All of these systems create art.  I wonder how computers can appreciate and ponder art.</p>
+          <div class="row">
+            <div class="col m8 s12 l6 push-m2 push-l3">
+              <div class="card z-depth-3">
+                <div class="card-image">
+                  <img class="responsive-img" src="https://1.bp.blogspot.com/-CdUrPm7x5Ig/VZQIGjJzP0I/AAAAAAAAAnI/qhqchfzdaOc/s1600/image00.jpg">
+                </div>
+                <div class="card-content">
+                  <p class="left-align light">An example of Google's Deep Dream input and output.</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          <div class="row">
+            <div class="col m8 s12 l6 push-m2 push-l3">
+              <div class="card z-depth-3">
+                <div class="card-image video-container">
+                  <iframe width="853" height="480" src="https://www.youtube.com/embed/OuvFsB4SLhA?rel=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                  <p class="left-align light">An example of art generated with an algorithm.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
 
   <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 2"></div>
+    <div class="parallax"><img src="images/Slave-ship.jpg" alt="Unsplashed background img 2"></div>
   </div>
 
-  <div class="container">
+  <div class="container" id="what">
     <div class="section">
 
       <div class="row">
         <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contact Us</h4>
-          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+          <h3><i class="medium material-icons brown-text">info</i></h3>
+          <h4>What</h4>
+          <p class="left-align light">As it stands the system consists of a Django backend to provide a web based user interface for A/B comparison data gathering, a powerful ORM, and a way to store the images and the "better than" relations they have.  Furthermore, using Django allows me a consistent way to hook into the database to run commands, including those for the neural network.</p>
+          <p class="left-align light"=>Impressionistic paintings were chosen for the data set because they provided an interesting set of images while still remaining somewhat focused on an individual style/genre.  Furthurmore, they can also elicit a wide range of reactions.</p>
+          <p class="left-align light">The neural network is being tested with a set of data held off from the training data.  It is hoped that the system will be symmetric and possibly even transitive in its selections.</p>
         </div>
       </div>
 
@@ -108,48 +108,51 @@
 
 
   <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+    
+    <div class="parallax"><img src="images/Claude_Monet,_Impression,_soleil_levant.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+  
+  <div class="container" id="why">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="medium material-icons brown-text">stars</i></h3>
+          <h4>Why</h4>
+          <p class="left-align">Art is a realm that computers have not necessarily been known for.  Given that:</p>
+          <div class="left-align light">
+            <ul>
+              <li>Is it feasible to create an art critic system utilizing a neural network?</li>
+              <li>Furthermore, how well would such system work?</li>
+            </ul>
+          </div>
+          <p class="left-align light">In order to look at the feasibility of such a system, one has to start somewhere.  A logical place to start is an A/B comparison system.  The end system should be able to do an A/B comparison and determine which is better, based off of what it has learned from training data.</p>
+          <p class="left-align light">Ideally, the system could provide the basis for a larger system that can be expanded for more than A/B comparisons, or other systems, like a Pandora for images.</p>
         </div>
       </div>
+
     </div>
-    <div class="parallax"><img src="background3.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    
+    <div class="parallax"><img src="images/Claude_Monet_The_Cliffs_at_Etretat.jpg" alt="Unsplashed background img 3"></div>
   </div>
 
   <footer class="page-footer teal">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+          <h5 class="white-text">Nelson Miller</h5>
+          <p class="grey-text text-lighten-4">USU CS6600 Fall 2015</p>
 
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Site made with <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
   </footer>
