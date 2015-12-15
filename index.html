@@ -162,8 +162,8 @@
           <h4>Results</h4>
           <p class="left-align">The thumbs down above is carefully chosen...</p>
           <p class="left-align light">While the trained neural networks had a lower mean squared error than the randomly initialized neural networks, they tended to narrow down to specifying a specific number, usually tilted towards the first image, regardless of the input.  This means that while there is an improvement, none of the potential features that I provided gave results that matched the targets.  Furthermore, this also means that the results are not reversible (image 1 is better than image 2, and image 2 is worse than image 1), let alone a potentially hoped for transitive nature.</p>
+          <div id="plot2"></div>
           <div id="plot"></div>
-
           <p class="left-align light">A second reason that the network could potentially have not resulted in a positive result is that there may actually be little correlation in the data that I generated.  In other words, there may be little in the images that define it as being better as far as features are concerned, color or otherwise.  Perhaps given a more carefully chosen set of source images this could be mitigated, but considering the challenge in identifying what people like about various images, this is unlikely.</p>
           <p class="left-align light">I also ran into issues with resource utilization.  Generally speaking, the neural network tends to consume memory at an alarming rate, with toned down versions of the network consuming over 16 GB of memory; a more complex version consumed over 30 GB of memory in less than 2 minutes with no indication of slowing down any time soon.</p>
           <p class="left-align light">The large resource consumption could potentially be resolved by moving to a more advanced neural network, but given the time I had left after working towards finding features that the network could obtain usable information from, this was not very feasible.  Even still, I believe that if there are features in the images that define them as being better, then neural networks would be a good choice.  For example, convolutional neural networks are one of the currently popular forms of feature extraction from images.  To continue this project, switching out to a convolutional neural network would be my first priority.  This would also end up potentially solving some of the resource utilization problems, as many Python implementations of convolutional neural networks are only small wrappers around C or C++ implementations, some of which also utilize GPGPU technologies, such as CUDA.</p>
@@ -202,68 +202,129 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-            <script>
-            var trace1 = {
-              x: [25, 25, 25, 25, 25, 25],
-              y: [0.500158499451, 0.500469223874, 0.493510830498, 0.499112202228, 0.500401376875, 0.520175443832],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace2 = {
-              x: [50, 50, 50, 50, 50, 50],
-              y: [0.526914276211, 0.49916966215, 0.500854208431, 0.519262077379, 0.50136495622, 0.51254883943],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace3 = {
-              x: [60, 60, 60, 60, 60, 60],
-              y: [ 0.49682606302, 0.510571663118, 0.511335351499, 0.503658162673, 0.476067062369, 0.511537030253],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace4 = {
-              x: [65, 65, 65, 65, 65, 65],
-              y: [ 0.503411990538, 0.513674600639, 0.508910886591, 0.505559228778, 0.488423316825, 0.498802412793],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace5 = {
-              x: [70, 70, 70, 70, 70, 70],
-              y: [ 0.501082361544, 0.504282924215, 0.479672287745, 0.500052636992, 0.517956614614, 0.495695607491],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace6 = {
-              x: [75, 75, 75, 75, 75, 75],
-              y: [ 0.516620558461, 0.509468724103, 0.500933245587,  0.50170651791, 0.508875611496, 0.503622595464],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace7 = {
-              x: [80, 80, 80, 80, 80, 80],
-              y: [  0.48599775461, 0.501890052116, 0.496705985991,  0.518509594074,  0.49641928671, 0.513918827181],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var trace8 = {
-              x: [90, 90, 90, 90, 90, 90],
-              y: [  0.496790279316, 0.496342762261,  0.5007807431,  0.499647635994,  0.506041487778, 0.496131874629],
-              mode: 'markers',
-              type: 'scatter'
-            };
-            var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8];
+  <script>
+    var trace1 = {
+      x: [25, 25, 25, 25, 25, 25],
+      y: [0.500158499451, 0.500469223874, 0.493510830498, 0.499112202228, 0.500401376875, 0.520175443832],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace2 = {
+      x: [50, 50, 50, 50, 50, 50],
+      y: [0.526914276211, 0.49916966215, 0.500854208431, 0.519262077379, 0.50136495622, 0.51254883943],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace3 = {
+      x: [60, 60, 60, 60, 60, 60],
+      y: [ 0.49682606302, 0.510571663118, 0.511335351499, 0.503658162673, 0.476067062369, 0.511537030253],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace4 = {
+      x: [65, 65, 65, 65, 65, 65],
+      y: [ 0.503411990538, 0.513674600639, 0.508910886591, 0.505559228778, 0.488423316825, 0.498802412793],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace5 = {
+      x: [70, 70, 70, 70, 70, 70],
+      y: [ 0.501082361544, 0.504282924215, 0.479672287745, 0.500052636992, 0.517956614614, 0.495695607491],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace6 = {
+      x: [75, 75, 75, 75, 75, 75],
+      y: [ 0.516620558461, 0.509468724103, 0.500933245587,  0.50170651791, 0.508875611496, 0.503622595464],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace7 = {
+      x: [80, 80, 80, 80, 80, 80],
+      y: [  0.48599775461, 0.501890052116, 0.496705985991,  0.518509594074,  0.49641928671, 0.513918827181],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace8 = {
+      x: [90, 90, 90, 90, 90, 90],
+      y: [  0.496790279316, 0.496342762261,  0.5007807431,  0.499647635994,  0.506041487778, 0.496131874629],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8];
 
-            Plotly.newPlot('plot', data, {
-              title: 'Average MSE for Percent of Dataset in Training Set',
-              xaxis: {
-                title: 'Percent of Dataset in Training Set'
-              },
-              yaxis: {
-                title: 'Average MSE'
-              },
-              showlegend: false
-            });
-          </script>
+    Plotly.newPlot('plot', data, {
+      title: 'Average MSE for Percent of Dataset in Training Set After Training',
+      xaxis: {
+        title: 'Percent of Dataset in Training Set'
+      },
+      yaxis: {
+        title: 'Average MSE'
+      },
+      showlegend: false
+    });
+    
+    var trace1 = {
+      x: [25, 25, 25, 25, 25, 25],
+      y: [1.1538603412, 1.48071740065, 0.870548392206, 2.91496809808, 0.737939240029, 0.648815433133],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace2 = {
+      x: [50, 50, 50, 50, 50, 50],
+      y: [0.65897010687, 3.45383928117, 4.19334659042, 1.0511040038, 0.527938896018, 1.39498743907],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace3 = {
+      x: [60, 60, 60, 60, 60, 60],
+      y: [ 1.19754024827, 0.990378783562, 1.10137374029, 0.621855996426, 0.686564931573, 2.54743356281],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace4 = {
+      x: [65, 65, 65, 65, 65, 65],
+      y: [ 1.101328374, 0.613419456946, 2.87308760825, 1.03283759525, 0.589674020186, 2.35817559415],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace5 = {
+      x: [70, 70, 70, 70, 70, 70],
+      y: [ 0.523886479516, 0.753672060209, 0.904533435975, 1.04028605408, 3.20196022817, 0.878879859815],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace6 = {
+      x: [75, 75, 75, 75, 75, 75],
+      y: [ 0.764999543222, 0.565559607529, 0.88596902345,  0.996659560847, 2.02149593016, 0.677636265934],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace7 = {
+      x: [80, 80, 80, 80, 80, 80],
+      y: [  0.673505593684, 0.761024662415, 0.539516274921,  0.791481793463,  0.667176514179, 1.3607121905],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var trace8 = {
+      x: [90, 90, 90, 90, 90, 90],
+      y: [  4.38753383819, 0.545510582334,  1.61551324347,  0.899350026039,  4.72118173182, 0.637766217777],
+      mode: 'markers',
+      type: 'scatter'
+    };
+    var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8];
+
+    Plotly.newPlot('plot2', data, {
+      title: 'Average MSE for Percent of Dataset in Training Set Before Training',
+      xaxis: {
+        title: 'Percent of Dataset in Training Set'
+      },
+      yaxis: {
+        title: 'Average MSE'
+      },
+      showlegend: false
+    });
+  </script>
 
   </body>
 </html>
