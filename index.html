@@ -18,12 +18,14 @@
         <li><a href="#teaser">Teaser</a></li>
         <li><a href="#what">What</a></li>
         <li><a href="#why">Why</a></li>
+        <li><a href="#results">Results</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#teaser">Teaser</a></li>
         <li><a href="#what">What</a></li>
         <li><a href="#why">Why</a></li>
+        <li><a href="#results">Results</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -33,9 +35,9 @@
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h1 class="header center teal-text text-lighten-2">Neural Network Art Critic</h1>
-        <div class="row center">
-          <h5 class="header col s12 light">A system using a neural network to do A/B comparisons of Impressionistic paintings.</h5>
+        <div class="card-panel z-depth-3">
+          <h1 class="header center teal-text text-lighten-2">Neural Network Art Critic</h1>
+          <h5 class="header col s12 grey-text text-darken-2 light">A system using a neural network to do A/B comparisons of Impressionistic paintings.</h5>
         </div>
         <br><br>
 
@@ -100,6 +102,17 @@
           <p class="left-align light">As it stands the system consists of a Django backend to provide a web based user interface for A/B comparison data gathering, a powerful ORM, and a way to store the images and the "better than" relations they have.  Furthermore, using Django allows me a consistent way to hook into the database to run commands, including those for the neural network.</p>
           <p class="left-align light"=>Impressionistic paintings were chosen for the data set because they provided an interesting set of images while still remaining somewhat focused on an individual style/genre.  Furthurmore, they can also elicit a wide range of reactions.</p>
           <p class="left-align light">The neural network is being tested with a set of data held off from the training data.  It is hoped that the system will be symmetric and possibly even transitive in its selections.</p>
+          <br>
+          <h5>Preprocessing</h5>
+          <p class="left-align light">The images were sized down to a maximum of 427x240 pixels and were filled in with whitespace to normalize the size.  From there, the images were pulled down to just 64 colors in an attempt to reduce the dimensionality of the problem.</p>
+          <br>
+          <h5>Data Collection</h5>
+          <p class="left-align light">While not pretty, the data was collected through a simple form connected to a Django view that allows the user to select one of two images that are randomly chosen as being better.  Due to the desired nature of the data, each submission of the form accounts for two data points: image 1 is better than image 2, and image 2 is worse than image 1.</p>
+          <br>
+          <h5>Data Processing</h5>
+          <p class="left-align light">PyBrain was selected as the base for building the neural networks off of, due to the speed at which they can be implemented.  In order to pass the data into PyBrain, the images must first be read in and converted into one dimensional vectors (arrays) and potentially modified to fit the desired input format.  Due to the preprocessing, this was rarely needed.</p>
+          <p class="left-align light">Once the data was loaded in, feature extraction could take place.  One such example of this feature example was Sobel edge detection.  From there, the data could be passed into a PyBrain dataset for splitting into testing and training datasets.</p>
+          <p class="left-align light">Prior to training the neural networks, the networks were evaluated.  The networks themselves were trained using back-propogation.  Once trained, the networks were evaluated with the same dataset as they had been tested against before.</p>
         </div>
       </div>
 
@@ -139,6 +152,32 @@
     
     <div class="parallax"><img src="images/Claude_Monet_The_Cliffs_at_Etretat.jpg" alt="Unsplashed background img 3"></div>
   </div>
+  
+  <div class="container" id="results">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="medium material-icons brown-text">thumb_down</i></h3>
+          <h4>Results</h4>
+          <p class="left-align">The thumbs down above is carefully chosen...</p>
+          <p class="left-align light">While the trained neural networks had a lower mean squared error than the randomly initialized neural networks, they tended to narrow down to specifying a specific number, usually tilted towards the first image, regardless of the input.  This means that while there is an improvement, none of the potential features that I provided gave results that matched the targets.  Furthermore, this also means that the results are not reversible (image 1 is better than image 2, and image 2 is worse than image 1), let alone a potentially hoped for transitive nature.</p>
+          <div id="plot"></div>
+
+          <p class="left-align light">A second reason that the network could potentially have not resulted in a positive result is that there may actually be little correlation in the data that I generated.  In other words, there may be little in the images that define it as being better as far as features are concerned, color or otherwise.  Perhaps given a more carefully chosen set of source images this could be mitigated, but considering the challenge in identifying what people like about various images, this is unlikely.</p>
+          <p class="left-align light">I also ran into issues with resource utilization.  Generally speaking, the neural network tends to consume memory at an alarming rate, with toned down versions of the network consuming over 16 GB of memory; a more complex version consumed over 30 GB of memory in less than 2 minutes with no indication of slowing down any time soon.</p>
+          <p class="left-align light">The large resource consumption could potentially be resolved by moving to a more advanced neural network, but given the time I had left after working towards finding features that the network could obtain usable information from, this was not very feasible.  Even still, I believe that if there are features in the images that define them as being better, then neural networks would be a good choice.  For example, convolutional neural networks are one of the currently popular forms of feature extraction from images.  To continue this project, switching out to a convolutional neural network would be my first priority.  This would also end up potentially solving some of the resource utilization problems, as many Python implementations of convolutional neural networks are only small wrappers around C or C++ implementations, some of which also utilize GPGPU technologies, such as CUDA.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    
+    <div class="parallax"><img src="images/Camille_Pissarro_-_Boulevard_Montmartre_-_Eremitage%20(1).jpg" alt="Unsplashed background img 3"></div>
+  </div>
 
   <footer class="page-footer teal">
     <div class="container">
@@ -162,6 +201,69 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script>
+            var trace1 = {
+              x: [25, 25, 25, 25, 25, 25],
+              y: [0.500158499451, 0.500469223874, 0.493510830498, 0.499112202228, 0.500401376875, 0.520175443832],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace2 = {
+              x: [50, 50, 50, 50, 50, 50],
+              y: [0.526914276211, 0.49916966215, 0.500854208431, 0.519262077379, 0.50136495622, 0.51254883943],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace3 = {
+              x: [60, 60, 60, 60, 60, 60],
+              y: [ 0.49682606302, 0.510571663118, 0.511335351499, 0.503658162673, 0.476067062369, 0.511537030253],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace4 = {
+              x: [65, 65, 65, 65, 65, 65],
+              y: [ 0.503411990538, 0.513674600639, 0.508910886591, 0.505559228778, 0.488423316825, 0.498802412793],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace5 = {
+              x: [70, 70, 70, 70, 70, 70],
+              y: [ 0.501082361544, 0.504282924215, 0.479672287745, 0.500052636992, 0.517956614614, 0.495695607491],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace6 = {
+              x: [75, 75, 75, 75, 75, 75],
+              y: [ 0.516620558461, 0.509468724103, 0.500933245587,  0.50170651791, 0.508875611496, 0.503622595464],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace7 = {
+              x: [80, 80, 80, 80, 80, 80],
+              y: [  0.48599775461, 0.501890052116, 0.496705985991,  0.518509594074,  0.49641928671, 0.513918827181],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var trace8 = {
+              x: [90, 90, 90, 90, 90, 90],
+              y: [  0.496790279316, 0.496342762261,  0.5007807431,  0.499647635994,  0.506041487778, 0.496131874629],
+              mode: 'markers',
+              type: 'scatter'
+            };
+            var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7, trace8];
+
+            Plotly.newPlot('plot', data, {
+              title: 'Average MSE for Percent of Dataset in Training Set',
+              xaxis: {
+                title: 'Percent of Dataset in Training Set'
+              },
+              yaxis: {
+                title: 'Average MSE'
+              },
+              showlegend: false
+            });
+          </script>
 
   </body>
 </html>
