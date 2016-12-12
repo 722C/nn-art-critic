@@ -21604,7 +21604,7 @@
 	                if (totalCars >= 5000) {
 	                    clearInterval(_this2.interval);
 	                }
-	            }, 50);
+	            }, 100);
 	        }
 	    }, {
 	        key: 'render',
